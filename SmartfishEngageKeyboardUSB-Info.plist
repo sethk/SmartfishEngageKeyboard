@@ -19,11 +19,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>0.1</string>
 	<key>OSBundleLibraries</key>
 	<dict>
 		<key>com.apple.iokit.IOHIDFamily</key>
 		<string>1.6.5</string>
+		<key>com.apple.iokit.IOUSBHIDDriver</key>
+		<string>4.1.5</string>
 		<key>com.apple.kpi.iokit</key>
 		<string>10.0.0d2</string>
 		<key>com.apple.kpi.libkern</key>
@@ -31,33 +33,24 @@
 	</dict>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>Smartfish Engage™ Keyboard</key>
+		<key>Smartfish Engage™ Keyboard USB</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>org.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
-			<key>DeviceUsagePairs</key>
-			<array>
-				<dict>
-					<key>DeviceUsage</key>
-					<integer>6</integer>
-					<key>DeviceUsagePage</key>
-					<integer>1</integer>
-				</dict>
-			</array>
-			<key>IOClass</key>
-			<string>SmartfishEngageKeyboard</string>
-			<key>IOProviderClass</key>
-			<string>IOHIDInterface</string>
-			<key>DebuggingOn</key>
-			<true/>
-			<key>IOKitDebug</key>
-			<integer>131071</integer>
 			<key>HIDDefaultBehavior</key>
 			<string>Keyboard</string>
-			<key>ProductID</key>
+			<key>IOClass</key>
+			<string>SmartfishEngageKeyboardUSB</string>
+			<key>IOProviderClass</key>
+			<string>IOUSBInterface</string>
+			<key>idProduct</key>
 			<integer>60935</integer>
-			<key>VendorID</key>
+			<key>idVendor</key>
 			<integer>7480</integer>
+			<key>bConfigurationValue</key>
+			<integer>1</integer>
+			<key>bInterfaceNumber</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 </dict>

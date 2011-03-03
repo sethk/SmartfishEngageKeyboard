@@ -7,12 +7,17 @@
  *
  */
 
-#include <IOKit/hidevent/IOHIDEventDriver.h>
+#include <IOKit/usb/IOUSBHIDDriver.h>
 
-class SmartfishEngageKeyboardUSB : public IOHIDEventDriver
+class SmartfishEngageKeyboardUSB : public IOUSBHIDDriver
 {
 	OSDeclareDefaultStructors(SmartfishEngageKeyboardUSB);
 
 public:
 	virtual bool init(OSDictionary *properties = 0);
+
+protected:
+	virtual IOReturn handleReport(IOMemoryDescriptor *report,
+								  IOHIDReportType reportType = kIOHIDReportTypeInput,
+								  IOOptionBits options = 0);
 };

@@ -48,16 +48,16 @@
 			<string>SmartfishEngageKeyboard</string>
 			<key>IOProviderClass</key>
 			<string>IOHIDInterface</string>
-			<key>DebuggingOn</key>
-			<true/>
-			<key>IOKitDebug</key>
-			<integer>131071</integer>
 			<key>HIDDefaultBehavior</key>
-			<string>Keyboard</string>
+			<string></string>
 			<key>ProductID</key>
 			<integer>60935</integer>
 			<key>VendorID</key>
 			<integer>7480</integer>
+			<key>bInterfaceClass</key>
+			<integer>3</integer>
+			<key>bInterfaceSubClass</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 </dict>

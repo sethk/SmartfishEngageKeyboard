@@ -9,7 +9,7 @@
 
 #include "SmartfishEngageKeyboardUSB.h"
 
-#define super IOHIDEventDriver
+#define super IOUSBHIDDriver
 
 OSDefineMetaClassAndStructors(SmartfishEngageKeyboardUSB, super);
 
@@ -21,4 +21,11 @@ SmartfishEngageKeyboardUSB::init(OSDictionary *properties)
 
 	printf("%s\n", __func__);
 	return true;
+}
+
+IOReturn
+SmartfishEngageKeyboardUSB::handleReport(IOMemoryDescriptor *report, IOHIDReportType reportType, IOOptionBits options)
+{
+	IOLog("handleReport()\n");
+	return super::handleReport(report, reportType, options);
 }

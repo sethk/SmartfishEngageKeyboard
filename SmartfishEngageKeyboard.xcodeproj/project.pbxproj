@@ -30,6 +30,29 @@
 			name = Unload;
 			productName = Unload;
 		};
+		FDE403D3131F2660001CD6BB /* Unload USB */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FDE403D5131F2660001CD6BB /* Build configuration list for PBXAggregateTarget "Unload USB" */;
+			buildPhases = (
+				FDE403D4131F2660001CD6BB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Unload USB";
+			productName = Unload;
+		};
+		FDE4FB66131F232C001CD6BB /* Load USB */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FDE4FB6A131F232C001CD6BB /* Build configuration list for PBXAggregateTarget "Load USB" */;
+			buildPhases = (
+				FDE4FB69131F232C001CD6BB /* ShellScript */,
+			);
+			dependencies = (
+				FDE4FB6E131F2339001CD6BB /* PBXTargetDependency */,
+			);
+			name = "Load USB";
+			productName = Load;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -44,6 +67,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 32D94FC30562CBF700B6AF17;
 			remoteInfo = SmartfishEngageKeyboard;
+		};
+		FDE4FB6D131F2339001CD6BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD2F83AB131A199E00C58E9B;
+			remoteInfo = SmartfishEngageKeyboardUSB;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -186,6 +216,8 @@
 				FD2F83AB131A199E00C58E9B /* SmartfishEngageKeyboardUSB */,
 				FD7E9DEA13164DF800580A91 /* Load */,
 				FDDAAB111319F13900E2ACC4 /* Unload */,
+				FDE4FB66131F232C001CD6BB /* Load USB */,
+				FDE403D3131F2660001CD6BB /* Unload USB */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +266,32 @@
 			shellPath = /bin/sh;
 			shellScript = "kext=\"/tmp/SmartfishEngageKeyboard.kext\"\nosascript <<EOT\ndo shell script \"kextunload '${kext}'\" with administrator privileges\nEOT";
 		};
+		FDE403D4131F2660001CD6BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "kext=\"/tmp/SmartfishEngageKeyboardUSB.kext\"\nosascript <<EOT\ndo shell script \"kextunload '${kext}'\" with administrator privileges\nEOT";
+		};
+		FDE4FB69131F232C001CD6BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "product=SmartfishEngageKeyboardUSB\nkext=\"/tmp/${product}.kext\"\nbuilt_kext=\"${BUILT_PRODUCTS_DIR}/${product}.kext\"\nosascript <<EOT\ndo shell script \"ditto '${built_kext}' '${kext}' && ${CHOWN} -R root:wheel '${kext}' && kextutil -nt '${kext}' && (kextunload -q '${kext}'; kextload '${kext}')\" with administrator privileges\nEOT";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -260,6 +318,11 @@
 			isa = PBXTargetDependency;
 			target = 32D94FC30562CBF700B6AF17 /* SmartfishEngageKeyboard */;
 			targetProxy = FD7E9DED13164DFF00580A91 /* PBXContainerItemProxy */;
+		};
+		FDE4FB6E131F2339001CD6BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD2F83AB131A199E00C58E9B /* SmartfishEngageKeyboardUSB */;
+			targetProxy = FDE4FB6D131F2339001CD6BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -406,6 +469,48 @@
 			};
 			name = Release;
 		};
+		FDE403D6131F2660001CD6BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Unload;
+			};
+			name = Debug;
+		};
+		FDE403D7131F2660001CD6BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Unload;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FDE4FB6B131F232C001CD6BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Load;
+			};
+			name = Debug;
+		};
+		FDE4FB6C131F232C001CD6BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Load;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -450,6 +555,24 @@
 			buildConfigurations = (
 				FDDAAB121319F13900E2ACC4 /* Debug */,
 				FDDAAB131319F13900E2ACC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDE403D5131F2660001CD6BB /* Build configuration list for PBXAggregateTarget "Unload USB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDE403D6131F2660001CD6BB /* Debug */,
+				FDE403D7131F2660001CD6BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDE4FB6A131F232C001CD6BB /* Build configuration list for PBXAggregateTarget "Load USB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDE4FB6B131F232C001CD6BB /* Debug */,
+				FDE4FB6C131F232C001CD6BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
