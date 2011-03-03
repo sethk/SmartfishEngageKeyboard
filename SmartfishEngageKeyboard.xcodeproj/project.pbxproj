@@ -81,7 +81,7 @@
 			children = (
 				FD2F83AD131A199E00C58E9B /* Info.plist */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		19C28FB6FE9D52B211CA2CBB /* Products */ = {
@@ -98,7 +98,7 @@
 				1A224C3EFF42367911CA2CB7 /* SmartfishEngageKeyboard.h */,
 				1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */,
 			);
-			name = Source;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		FD7E9DE013164D8E00580A91 /* Frameworks */ = {
@@ -242,6 +242,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
+				INSTALL_GROUP = wheel;
+				INSTALL_OWNER = root;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
 				MODULE_NAME = "com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}";
 				MODULE_VERSION = 1.0.0d1;
