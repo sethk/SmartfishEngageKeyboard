@@ -29,7 +29,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -72,10 +72,6 @@
 			<string>SmartfishEngageKeyboard</string>
 			<key>IOProviderClass</key>
 			<string>IOHIDInterface</string>
-			<key>DebuggingOn</key>
-			<true/>
-			<key>IOKitDebug</key>
-			<integer>131071</integer>
 			<key>HIDDefaultBehavior</key>
 			<string>Keyboard</string>
 			<key>ProductID</key>
