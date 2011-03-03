@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+ ! Copyright (c) 2011, Seth Kingsley
+ ! All rights reserved.
+ !
+ ! Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ ! following conditions are met:
+ !
+ ! • Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ !   disclaimer.
+ ! • Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ !   disclaimer in the documentation and/or other materials provided with the distribution.
+ ! • Neither the name Seth Kingsley nor the names of other contributors may be used to endorse or promote products
+ !   derived from this software without specific prior written permission.
+ !
+ ! THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ ! INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ ! DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ ! SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ ! SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ ! WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ ! OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ !-->
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>KEXT</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2011 Seth Kingsley.  All rights reserved.  Engage™ and Ergo-Motion are trademarks of Smartfish Technologies.</string>
+	<key>OSBundleLibraries</key>
+	<dict>
+		<key>com.apple.iokit.IOHIDFamily</key>
+		<string>1.6.5</string>
+		<key>com.apple.kpi.iokit</key>
+		<string>10.0.0d2</string>
+		<key>com.apple.kpi.libkern</key>
+		<string>10.0.0d2</string>
+	</dict>
+	<key>IOKitPersonalities</key>
+	<dict>
+		<key>Smartfish Engage™ Keyboard</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
+			<key>DeviceUsagePairs</key>
+			<array>
+				<dict>
+					<key>DeviceUsage</key>
+					<integer>6</integer>
+					<key>DeviceUsagePage</key>
+					<integer>1</integer>
+				</dict>
+			</array>
+			<key>IOClass</key>
+			<string>SmartfishEngageKeyboard</string>
+			<key>IOProviderClass</key>
+			<string>IOHIDInterface</string>
+			<key>DebuggingOn</key>
+			<true/>
+			<key>IOKitDebug</key>
+			<integer>131071</integer>
+			<key>HIDDefaultBehavior</key>
+			<string>Keyboard</string>
+			<key>ProductID</key>
+			<integer>60935</integer>
+			<key>VendorID</key>
+			<integer>7480</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>

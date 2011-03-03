@@ -34,7 +34,6 @@
 
 /* Begin PBXBuildFile section */
 		32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */; settings = {ATTRIBUTES = (); }; };
-		FD2F83B4131A323000C58E9B /* SmartfishEngageKeyboardUSB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD2F83B3131A323000C58E9B /* SmartfishEngageKeyboardUSB.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,24 +49,13 @@
 /* Begin PBXFileReference section */
 		1A224C3EFF42367911CA2CB7 /* SmartfishEngageKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = SmartfishEngageKeyboard.h; sourceTree = "<group>"; tabWidth = 4; };
 		1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartfishEngageKeyboard.cpp; sourceTree = "<group>"; tabWidth = 4; };
-		32D94FCF0562CBF700B6AF17 /* SmartfishEngageKeyboardUSB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartfishEngageKeyboardUSB-Info.plist"; sourceTree = "<group>"; };
 		32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartfishEngageKeyboard.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA8362C06AD9B9200E5AC22 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
-		FD2F83AC131A199E00C58E9B /* SmartfishEngageKeyboardUSB.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartfishEngageKeyboardUSB.kext; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD2F83AD131A199E00C58E9B /* SmartfishEngageKeyboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartfishEngageKeyboard-Info.plist"; sourceTree = "<group>"; };
-		FD2F83B2131A323000C58E9B /* SmartfishEngageKeyboardUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = SmartfishEngageKeyboardUSB.h; sourceTree = "<group>"; tabWidth = 4; };
-		FD2F83B3131A323000C58E9B /* SmartfishEngageKeyboardUSB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartfishEngageKeyboardUSB.cpp; sourceTree = "<group>"; tabWidth = 4; };
+		FD2F83AD131A199E00C58E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		32D94FCB0562CBF700B6AF17 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD2F83AA131A199E00C58E9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -91,8 +79,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FD2F83AD131A199E00C58E9B /* SmartfishEngageKeyboard-Info.plist */,
-				32D94FCF0562CBF700B6AF17 /* SmartfishEngageKeyboardUSB-Info.plist */,
+				FD2F83AD131A199E00C58E9B /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -101,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */,
-				FD2F83AC131A199E00C58E9B /* SmartfishEngageKeyboardUSB.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,8 +97,6 @@
 			children = (
 				1A224C3EFF42367911CA2CB7 /* SmartfishEngageKeyboard.h */,
 				1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */,
-				FD2F83B2131A323000C58E9B /* SmartfishEngageKeyboardUSB.h */,
-				FD2F83B3131A323000C58E9B /* SmartfishEngageKeyboardUSB.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -146,23 +130,6 @@
 			productReference = 32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */;
 			productType = "com.apple.product-type.kernel-extension.iokit";
 		};
-		FD2F83AB131A199E00C58E9B /* SmartfishEngageKeyboardUSB */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FD2F83B1131A199E00C58E9B /* Build configuration list for PBXNativeTarget "SmartfishEngageKeyboardUSB" */;
-			buildPhases = (
-				FD2F83A8131A199E00C58E9B /* Sources */,
-				FD2F83A9131A199E00C58E9B /* Resources */,
-				FD2F83AA131A199E00C58E9B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SmartfishEngageKeyboardUSB;
-			productName = SmartfishEngageKeyboardUSB;
-			productReference = FD2F83AC131A199E00C58E9B /* SmartfishEngageKeyboardUSB.kext */;
-			productType = "com.apple.product-type.kernel-extension.iokit";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -183,7 +150,6 @@
 			projectRoot = "";
 			targets = (
 				32D94FC30562CBF700B6AF17 /* SmartfishEngageKeyboard */,
-				FD2F83AB131A199E00C58E9B /* SmartfishEngageKeyboardUSB */,
 				FD7E9DEA13164DF800580A91 /* Load */,
 				FDDAAB111319F13900E2ACC4 /* Unload */,
 			);
@@ -192,13 +158,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		32D94FC70562CBF700B6AF17 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD2F83A9131A199E00C58E9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -245,14 +204,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD2F83A8131A199E00C58E9B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FD2F83B4131A323000C58E9B /* SmartfishEngageKeyboardUSB.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -274,9 +225,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "SmartfishEngageKeyboard-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.SmartfishEngageKeyboard;
+				MODULE_NAME = "com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}";
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = SmartfishEngageKeyboard;
 				WRAPPER_EXTENSION = kext;
@@ -290,9 +241,9 @@
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
-				INFOPLIST_FILE = "SmartfishEngageKeyboard-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.SmartfishEngageKeyboard;
+				MODULE_NAME = "com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}";
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_NAME = SmartfishEngageKeyboard;
 				WRAPPER_EXTENSION = kext;
@@ -305,6 +256,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,45 +274,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
-			};
-			name = Release;
-		};
-		FD2F83AF131A199E00C58E9B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "SmartfishEngageKeyboardUSB-Info.plist";
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.SmartfishEngageKeyboardUSB;
-				MODULE_VERSION = 1.0.0d1;
-				PREBINDING = NO;
-				PRODUCT_NAME = SmartfishEngageKeyboardUSB;
-				WRAPPER_EXTENSION = kext;
-			};
-			name = Debug;
-		};
-		FD2F83B0131A199E00C58E9B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				INFOPLIST_FILE = "SmartfishEngageKeyboardUSB-Info.plist";
-				INSTALL_PATH = "$(SYSTEM_LIBRARY_DIR)/Extensions";
-				MODULE_NAME = com.yourcompany.driver.SmartfishEngageKeyboardUSB;
-				MODULE_VERSION = 1.0.0d1;
-				PREBINDING = NO;
-				PRODUCT_NAME = SmartfishEngageKeyboardUSB;
-				WRAPPER_EXTENSION = kext;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -423,15 +336,6 @@
 			buildConfigurations = (
 				1DEB91DE08733DB10010E9CD /* Debug */,
 				1DEB91DF08733DB10010E9CD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FD2F83B1131A199E00C58E9B /* Build configuration list for PBXNativeTarget "SmartfishEngageKeyboardUSB" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FD2F83AF131A199E00C58E9B /* Debug */,
-				FD2F83B0131A199E00C58E9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,3 +1,26 @@
+/*-
+ * Copyright (c) 2011, Seth Kingsley
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ * following conditions are met:
+ *
+ * • Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ *   disclaimer.
+ * • Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials provided with the distribution.
+ * • Neither the name Seth Kingsley nor the names of other contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+ 
 #include "SmartfishEngageKeyboard.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
@@ -5,55 +28,21 @@
 
 OSDefineMetaClassAndStructors(SmartfishEngageKeyboard, super);
 
-bool
-SmartfishEngageKeyboard::init(OSDictionary *properties)
-{
-	IOLog("Smartfish Engage Keyboard init\n");
-	return super::init(properties);
-}
-
-bool
-SmartfishEngageKeyboard::start(IOService *provider)
-{
-	IOLog("Smartfish Engage Keyboard start\n");
-	return super::start(provider);
-}
-
 void
-SmartfishEngageKeyboard::stop(IOService *provider)
+SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime timeStamp,
+		UInt32 usagePage, UInt32 usage, UInt32 value,
+		IOOptionBits options)
 {
-	IOLog("Smartfish Engage Keyboard stop\n");
-	super::stop(provider);
-}
-
-void
-SmartfishEngageKeyboard::free(void)
-{
-	IOLog("Smartfish Engage Keyboard free\n");
-	super::free();
-}
-
-IOReturn
-SmartfishEngageKeyboard::message(UInt32 type, IOService *provider, void *argument)
-{
-	IOLog("Smartfish Engage Keyboard message\n");
-	return super::message(type, provider, argument);
-}
-
-void
-SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime                timeStamp,
-											  UInt32                      usagePage,
-											  UInt32                      usage,
-											  UInt32                      value,
-											  IOOptionBits                options)
-{
+#ifdef DEBUG
 	IOLog("dispatchKeyboardEvent(..., %lu, %lu, %lu, 0x%lx)\n", usagePage, usage, value, options);
+#endif // DEBUG
 
 	if (usagePage == kHIDPage_KeyboardOrKeypad)
 	{
 		if (usage < kHIDUsage_KeyboardLeftControl)
 			--usage;
 
+#ifdef DEBUG
 		switch (usage)
 		{
 			case kHIDUsage_KeyboardLeftAlt: usage = kHIDUsage_KeyboardLeftGUI; break;
@@ -61,97 +50,8 @@ SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime                timeS
 			case kHIDUsage_KeyboardRightAlt: usage = kHIDUsage_KeyboardRightGUI; break;
 			case kHIDUsage_KeyboardRightGUI: usage = kHIDUsage_KeyboardRightAlt; break;
 		}
+#endif // DEBUG
 	}
 
 	super::dispatchKeyboardEvent(timeStamp, usagePage, usage, value, options);
 }
-
-
-void
-SmartfishEngageKeyboard::handleInterruptReport(AbsoluteTime                timeStamp,
-											   IOMemoryDescriptor *        report,
-											   IOHIDReportType             reportType,
-											   UInt32                      reportID)
-{
-	IOLog("handleInterruptReport(..., %d, %lu)\n", reportType, reportID);
-
-	OSArray *elements = super::getReportElements();
-	if (elements)
-	{
-		UInt32 numElements = elements->getCount();
-		IOLog("elements count = %ld\n", numElements);
-		for (UInt32 elementIndex = 0; elementIndex < numElements; ++elementIndex)
-		{
-			IOHIDElement *element = (IOHIDElement *)elements->getObject(elementIndex);
-			if (element && element->getType() != kIOHIDElementTypeCollection && element->getValue())
-				IOLog("element %ld: %ld, %ld, %ld, %ld, %ld\n",
-						elementIndex, element->getUsagePage(), element->getUsage(), element->getValue(),
-						element->getLogicalMin(), element->getLogicalMax());
-		}
-	}
-
-	super::handleInterruptReport(timeStamp, report, reportType, reportID);
-}
-
-#if 0
-void
-SmartfishEngageKeyboard::keyboardEvent(unsigned eventType,
-						   /* flags */            unsigned flags,
-						   /* keyCode */          unsigned keyCode,
-						   /* charCode */         unsigned charCode,
-						   /* charSet */          unsigned charSet,
-						   /* originalCharCode */ unsigned origCharCode,
-						   /* originalCharSet */  unsigned origCharSet)
-{
-	IOLog("keyboardEvent\n");
-	super::keyboardEvent(eventType, flags, keyCode, charCode, charSet, origCharCode, origCharSet);
-}
-
-const unsigned char *
-SmartfishEngageKeyboard::defaultKeymapOfLength(UInt32 *length)
-{
-	static const unsigned char kKeymap[] =
-	{
-		0x0, 0x0, // Data is in chars
-		0x0,      // Number of modifier keys
-		0x1,      // Number of key definitions
-		// Key definitions:
-		0xff,
-		0x0,      // Number of sequences
-		0x1,      // Number of special keys
-		// Special Keys:
-		NX_POWER_KEY, 0x1
-	};
-
-	*length = sizeof(kKeymap) / sizeof(kKeymap[0]);
-	return kKeymap;
-}
-
-void
-SmartfishEngageKeyboard::setAlphaLockFeedback(bool val)
-{
-	IOLog("setAlphaLockFeedback\n");
-	super::setAlphaLockFeedback(val);
-}
-
-void
-SmartfishEngageKeyboard::setNumLockFeedback(bool val)
-{
-	IOLog("setNumLockFeedback\n");
-	super::setNumLockFeedback(val);
-}
-
-UInt32
-SmartfishEngageKeyboard::maxKeyCodes()
-{
-	IOLog("maxKeyCodes()\n");
-	return super::maxKeyCodes();
-}
-
-void
-SmartfishEngageKeyboard::dispatchKeyboardEvent(unsigned int keyCode, bool goingDown, AbsoluteTime time)
-{
-	IOLog("%s(%u, %d, ...)\n", __func__, keyCode, (int)goingDown);
-	super::dispatchKeyboardEvent(keyCode, goingDown, time);
-}
-#endif // 0
