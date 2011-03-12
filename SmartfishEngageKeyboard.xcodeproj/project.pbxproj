@@ -52,10 +52,19 @@
 		32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartfishEngageKeyboard.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA8362C06AD9B9200E5AC22 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
 		FD2F83AD131A199E00C58E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD4A1AC813200E8800A5562E /* SmartfishEngageKeyboard.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartfishEngageKeyboard.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4A1AC913200E8800A5562E /* Preference Pane-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Preference Pane-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		32D94FCB0562CBF700B6AF17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD4A1AC613200E8800A5562E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				FD2F83AD131A199E00C58E9B /* Info.plist */,
+				FD4A1AC913200E8800A5562E /* Preference Pane-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -88,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */,
+				FD4A1AC813200E8800A5562E /* SmartfishEngageKeyboard.prefPane */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +141,23 @@
 			productReference = 32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */;
 			productType = "com.apple.product-type.kernel-extension.iokit";
 		};
+		FD4A1AC713200E8800A5562E /* Preference Pane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD4A1ACC13200E8800A5562E /* Build configuration list for PBXNativeTarget "Preference Pane" */;
+			buildPhases = (
+				FD4A1AC413200E8800A5562E /* Resources */,
+				FD4A1AC513200E8800A5562E /* Sources */,
+				FD4A1AC613200E8800A5562E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Preference Pane";
+			productName = "Preference Pane";
+			productReference = FD4A1AC813200E8800A5562E /* SmartfishEngageKeyboard.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -152,12 +180,20 @@
 				32D94FC30562CBF700B6AF17 /* SmartfishEngageKeyboard */,
 				FD7E9DEA13164DF800580A91 /* Load */,
 				FDDAAB111319F13900E2ACC4 /* Unload */,
+				FD4A1AC713200E8800A5562E /* Preference Pane */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		32D94FC70562CBF700B6AF17 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD4A1AC413200E8800A5562E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,6 +237,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD4A1AC513200E8800A5562E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +322,31 @@
 			};
 			name = Release;
 		};
+		FD4A1ACA13200E8800A5562E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "Resources/PrefPane-Info.plist";
+				INSTALL_PATH = /Library/PreferencePanes;
+				PREBINDING = NO;
+				PRODUCT_NAME = SmartfishEngageKeyboard;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		FD4A1ACB13200E8800A5562E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "Resources/PrefPane-Info.plist";
+				INSTALL_PATH = /Library/PreferencePanes;
+				PREBINDING = NO;
+				PRODUCT_NAME = SmartfishEngageKeyboard;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
 		FD7E9DEB13164DF800580A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -338,6 +406,15 @@
 			buildConfigurations = (
 				1DEB91DE08733DB10010E9CD /* Debug */,
 				1DEB91DF08733DB10010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD4A1ACC13200E8800A5562E /* Build configuration list for PBXNativeTarget "Preference Pane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD4A1ACA13200E8800A5562E /* Debug */,
+				FD4A1ACB13200E8800A5562E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
