@@ -27,8 +27,13 @@ class SmartfishEngageKeyboard : public IOHIDEventDriver
 {
 	OSDeclareDefaultStructors(SmartfishEngageKeyboard);
 
+public:
+    virtual IOReturn setSystemProperties(OSDictionary *properties);
+
 protected:
 	virtual void dispatchKeyboardEvent(AbsoluteTime timeStamp,
 			UInt32 usagePage, UInt32 usage, UInt32 value,
 			IOOptionBits options = 0);
+
+	bool _fKeyState;
 };
