@@ -34,6 +34,7 @@
 
 /* Begin PBXBuildFile section */
 		32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */; settings = {ATTRIBUTES = (); }; };
+		FD9DA163133871380018AAE4 /* KeyMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD9DA162133871380018AAE4 /* KeyMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartfishEngageKeyboard.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA8362C06AD9B9200E5AC22 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
 		FD2F83AD131A199E00C58E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD9DA162133871380018AAE4 /* KeyMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyMap.cpp; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				1A224C3EFF42367911CA2CB7 /* SmartfishEngageKeyboard.h */,
 				1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */,
+				FD9DA162133871380018AAE4 /* KeyMap.cpp */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */,
+				FD9DA163133871380018AAE4 /* KeyMap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
