@@ -24,6 +24,7 @@
 #include "SmartfishEngageKeyboard.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 #include <IOKit/hid/AppleHIDUsageTables.h>
+#include <IOKit/hidsystem/ev_keymap.h>
 
 #define super IOHIDEventDriver
 
@@ -31,7 +32,7 @@ OSDefineMetaClassAndStructors(SmartfishEngageKeyboard, super);
 
 static const unsigned char kVirtualFKeys[] =
 {
-	kHIDUsage_KeyboardNonUSBackslash, /* USB 0x64, ADB 0x41 */
+	kHIDUsage_KeyboardNonUSBackslash, /* USB 0x64, ADB 0x0a */
 	kHIDUsage_KeyboardPower,          /* USB 0x66, ADB 0x7f */
 	kHIDUsage_KeypadComma,            /* USB 0x85, ADB 0x5f */
 	kHIDUsage_KeyboardInternational1, /* USB 0x87, ADB 0x5e */
@@ -43,6 +44,22 @@ static const unsigned char kVirtualFKeys[] =
 	kHIDUsage_KeyboardMute,           /* USB 0x7f, ADB 0x4a */
 	kHIDUsage_KeyboardVolumeDown,     /* USB 0x81, ADB 0x49 */
 	kHIDUsage_KeyboardVolumeUp        /* USB 0x80, ADB 0x48 */
+};
+
+static const unsigned char kFKeyMappings[] =
+{
+	NX_KEYTYPE_BRIGHTNESS_DOWN,
+	NX_KEYTYPE_BRIGHTNESS_UP,
+	(unsigned char)NX_NOSPECIALKEY, /* Exposé */
+	(unsigned char)NX_NOSPECIALKEY, /* Dashboard */
+	(unsigned char)NX_NOSPECIALKEY,
+	(unsigned char)NX_NOSPECIALKEY,
+	NX_KEYTYPE_PREVIOUS,
+	NX_KEYTYPE_PLAY,
+	NX_KEYTYPE_NEXT,
+	NX_KEYTYPE_MUTE,
+	NX_KEYTYPE_SOUND_DOWN,
+	NX_KEYTYPE_SOUND_UP
 };
 
 IOReturn
@@ -88,7 +105,8 @@ SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime timeStamp,
 
 		if (usage == kHIDUsage_KeyboardApplication)
 			_fKeyState = (value != 0);
-		else if (_fKeyState && kHIDUsage_KeyboardF1 <= usage <= kHIDUsage_KeyboardF12)
+		else if (_fKeyState && kHIDUsage_KeyboardF1 <= usage <= kHIDUsage_KeyboardF12 &&
+				kFKeyMappings[usage - kHIDUsage_KeyboardF1] != (unsigned char)NX_NOSPECIALKEY)
 			usage = kVirtualFKeys[usage - kHIDUsage_KeyboardF1];
 #ifdef DEBUG
 		else switch (usage)

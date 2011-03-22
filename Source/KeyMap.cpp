@@ -1,13 +1,25 @@
-/*
- *  KeyMap.cpp
- *  SmartfishEngageKeyboard
+/*-
+ * Copyright (c) 2011, Seth Kingsley
+ * All rights reserved.
  *
- *  Created by Seth Kingsley on 3/21/11.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ * following conditions are met:
  *
+ * • Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ *   disclaimer.
+ * • Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials provided with the distribution.
+ * • Neither the name Seth Kingsley nor the names of other contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include <IOKit/hidsystem/ev_keymap.h>
 
 static const unsigned char kKeyMap[] =
 {
@@ -41,7 +53,7 @@ static const unsigned char kKeyMap[] =
 	0x0d, 0x00, 0x78, 0x00, 0x58, 0x00, 0x18, 0x00, 0x18, 0x01, 0xb4, 0x01, 0xce, 0x00, 0x18, 0x00, 0x18, // 07 X
 	0x0d, 0x00, 0x63, 0x00, 0x43, 0x00, 0x03, 0x00, 0x03, 0x01, 0xe3, 0x01, 0xd3, 0x00, 0x03, 0x00, 0x03, // 08 C
 	0x0d, 0x00, 0x76, 0x00, 0x56, 0x00, 0x16, 0x00, 0x16, 0x01, 0xd6, 0x01, 0xe0, 0x00, 0x16, 0x00, 0x16, // 09 V
-	0xff, /* 0x02, 0x00, 0x3c, 0x00, 0x3e, */                                                             // 0a §
+	0xff,                                                                                                 // 0a §
 	0x0d, 0x00, 0x62, 0x00, 0x42, 0x00, 0x02, 0x00, 0x02, 0x01, 0xe5, 0x01, 0xf2, 0x00, 0x02, 0x00, 0x02, // 0b B
 	0x0d, 0x00, 0x71, 0x00, 0x51, 0x00, 0x11, 0x00, 0x11, 0x00, 0xfa, 0x00, 0xea, 0x00, 0x11, 0x00, 0x11, // 0c Q
 	0x0d, 0x00, 0x77, 0x00, 0x57, 0x00, 0x17, 0x00, 0x17, 0x01, 0xc8, 0x01, 0xc7, 0x00, 0x17, 0x00, 0x17, // 0d W
@@ -96,7 +108,7 @@ static const unsigned char kKeyMap[] =
 	0xff,                                                                                                 // 3e Up
 	0xff,                                                                                                 // 3f
 	0x00, 0xfe, 0x36,                                                                                     // 40 F17
-	0xff, /* 0x00, 0x00, 0x2e, */                                                                         // 41 Keypad .
+	0x00, 0x00, 0x2e,                                                                                     // 41 Keypad .
 	0xff,                                                                                                 // 42 Grp
 	0x00, 0x00, 0x2a,                                                                                     // 43 Keypad *
 	0xff,                                                                                                 // 44
@@ -110,8 +122,8 @@ static const unsigned char kKeyMap[] =
 	0x00, 0x00, 0x0d,                                                                                     // 4c KP Enter
 	0xff,                                                                                                 // 4d RecSep
 	0x00, 0x00, 0x2d,                                                                                     // 4e Keypad -
-	0x00, 0xfe, 0x37,                                                                                     // 4f F18
-	0x00, 0xfe, 0x38,                                                                                     // 50 F19
+	0xff,                                                                                                 // 4f F18
+	0xff,                                                                                                 // 50 F19
 	0x0e, 0x00, 0x3d, 0x00, 0x7c, 0x00, 0x3d, 0x00, 0x1c, 0x00, 0x3d, 0x00, 0x7c, 0x00, 0x00, 0x18, 0x46, // 51 Keypad =
 	0x00, 0x00, 0x30,                                                                                     // 52 Keypad 0
 	0x00, 0x00, 0x31,                                                                                     // 53 Keypad 1
@@ -121,7 +133,7 @@ static const unsigned char kKeyMap[] =
 	0x00, 0x00, 0x35,                                                                                     // 57 Keypad 5
 	0x00, 0x00, 0x36,                                                                                     // 58 Keypad 6
 	0x00, 0x00, 0x37,                                                                                     // 59 Keypad 7
-	0x00, 0xfe, 0x39,                                                                                     // 5a F20
+	0xff,                                                                                                 // 5a F20
 	0x00, 0x00, 0x38,                                                                                     // 5b Keypad 8
 	0x00, 0x00, 0x39,                                                                                     // 5c Keypad 9
 	0xff,                                                                                                 // 5d
@@ -158,7 +170,7 @@ static const unsigned char kKeyMap[] =
 	0x00, 0x01, 0xae,                                                                                     // 7c Rght
 	0x00, 0x01, 0xaf,                                                                                     // 7d Down
 	0x00, 0x01, 0xad,                                                                                     // 7e Up
-	0x00, 0xfe, 0x90, /* 0x00, 0x00, 0x00, */                                                             // 7f
+	0xff,                                                                                                 // 7f
 	0x00, 0x00, 0x00,                                                                                     // 80
 	0x00, 0x00, 0x00,                                                                                     // 81 Spotlgt
 	0x00, 0x00, 0x00,                                                                                     // 82 Dashbrd
@@ -209,12 +221,12 @@ static const unsigned char kKeyMap[] =
 
 	// Special Keys:
 	0x08,
-	NX_KEYTYPE_CAPS_LOCK, 0x39,
-	NX_KEYTYPE_HELP, 0x72,
-	NX_POWER_KEY, 0x7f,
+	NX_KEYTYPE_BRIGHTNESS_DOWN, 0x0a,
+	NX_KEYTYPE_BRIGHTNESS_UP, 0x7f,
+	NX_KEYTYPE_PREVIOUS, 0x50,
+	NX_KEYTYPE_PLAY, 0x5a,
+	NX_KEYTYPE_NEXT, 0x66,
 	NX_KEYTYPE_MUTE, 0x4a,
-	NX_KEYTYPE_SOUND_UP, 0x48,
 	NX_KEYTYPE_SOUND_DOWN, 0x49,
-	NX_KEYTYPE_NUM_LOCK, 0x47,
-	NX_KEYTYPE_PLAY, 0x0a
+	NX_KEYTYPE_SOUND_UP, 0x48
 };

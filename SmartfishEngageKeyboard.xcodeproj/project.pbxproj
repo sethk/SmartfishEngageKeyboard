@@ -34,7 +34,6 @@
 
 /* Begin PBXBuildFile section */
 		32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */; settings = {ATTRIBUTES = (); }; };
-		FD9DA163133871380018AAE4 /* KeyMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD9DA162133871380018AAE4 /* KeyMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */,
-				FD9DA163133871380018AAE4 /* KeyMap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
