@@ -30,7 +30,7 @@
 
 OSDefineMetaClassAndStructors(SmartfishEngageKeyboard, super);
 
-static const unsigned char kVirtualFKeys[] =
+static const u_char kVirtualFKeys[] =
 {
 	kHIDUsage_KeyboardNonUSBackslash, /* USB 0x64, ADB 0x0a */
 	kHIDUsage_KeyboardPower,          /* USB 0x66, ADB 0x7f */
@@ -38,6 +38,8 @@ static const unsigned char kVirtualFKeys[] =
 	kHIDUsage_KeyboardInternational1, /* USB 0x87, ADB 0x5e */
 	kHIDUsage_KeyboardInternational3, /* USB 0x89, ADB 0x5d */
 	kHIDUsage_KeyboardF18,            /* USB 0x6d, ADB 0x4f */
+	(u_char)NX_NOSPECIALKEY,
+	(u_char)NX_NOSPECIALKEY,
 	kHIDUsage_KeyboardF19,            /* USB 0x6e, ADB 0x50 */
 	kHIDUsage_KeyboardF20,            /* USB 0x6f, ADB 0x5a */
 	kHIDUsage_KeyboardLANG2,          /* USB 0x91, ADB 0x66 */
@@ -46,14 +48,14 @@ static const unsigned char kVirtualFKeys[] =
 	kHIDUsage_KeyboardVolumeUp        /* USB 0x80, ADB 0x48 */
 };
 
-static const unsigned char kFKeyMappings[] =
+static const u_char kFKeyMappings[] =
 {
 	NX_KEYTYPE_BRIGHTNESS_DOWN,
 	NX_KEYTYPE_BRIGHTNESS_UP,
-	(unsigned char)NX_NOSPECIALKEY, /* Exposé */
-	(unsigned char)NX_NOSPECIALKEY, /* Dashboard */
-	(unsigned char)NX_NOSPECIALKEY,
-	(unsigned char)NX_NOSPECIALKEY,
+	(u_char)NX_NOSPECIALKEY, /* Exposé */
+	(u_char)NX_NOSPECIALKEY, /* Dashboard */
+	(u_char)NX_NOSPECIALKEY,
+	(u_char)NX_NOSPECIALKEY,
 	NX_KEYTYPE_PREVIOUS,
 	NX_KEYTYPE_PLAY,
 	NX_KEYTYPE_NEXT,
@@ -106,7 +108,7 @@ SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime timeStamp,
 		if (usage == kHIDUsage_KeyboardApplication)
 			_fKeyState = (value != 0);
 		else if (_fKeyState && kHIDUsage_KeyboardF1 <= usage <= kHIDUsage_KeyboardF12 &&
-				kFKeyMappings[usage - kHIDUsage_KeyboardF1] != (unsigned char)NX_NOSPECIALKEY)
+				kFKeyMappings[usage - kHIDUsage_KeyboardF1] != (u_char)NX_NOSPECIALKEY)
 			usage = kVirtualFKeys[usage - kHIDUsage_KeyboardF1];
 #ifdef DEBUG
 		else switch (usage)

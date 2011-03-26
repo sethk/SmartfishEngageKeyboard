@@ -21,7 +21,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-static const unsigned char kKeyMap[] =
+static const u_char kKeyMap[] =
 {
 	0x00, 0x00, // Using chars
 
