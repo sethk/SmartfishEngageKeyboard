@@ -22,12 +22,14 @@
  */
  
 #include <IOKit/hidevent/IOHIDEventDriver.h>
+#include <IOKit/hidsystem/ev_keymap.h>
 
 class SmartfishEngageKeyboard : public IOHIDEventDriver
 {
 	OSDeclareDefaultStructors(SmartfishEngageKeyboard);
 
 public:
+	virtual bool init(OSDictionary *properties = 0);
     virtual IOReturn setSystemProperties(OSDictionary *properties);
 
 protected:
@@ -36,4 +38,6 @@ protected:
 			IOOptionBits options = 0);
 
 	bool _fKeyState;
+	u_char _fKeyMappings[NX_NUMKEYCODES];
+	u_char _fKeyVirtualMappings[NX_NUMKEYCODES];
 };

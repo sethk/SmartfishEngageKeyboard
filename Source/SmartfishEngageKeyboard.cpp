@@ -24,45 +24,60 @@
 #include "SmartfishEngageKeyboard.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 #include <IOKit/hid/AppleHIDUsageTables.h>
-#include <IOKit/hidsystem/ev_keymap.h>
 
 #define super IOHIDEventDriver
 
 OSDefineMetaClassAndStructors(SmartfishEngageKeyboard, super);
 
-static const u_char kVirtualFKeys[] =
+static const struct {u_char usb, adb;} kVirtualFKeys[] =
 {
-	kHIDUsage_KeyboardNonUSBackslash, /* USB 0x64, ADB 0x0a */
-	kHIDUsage_KeyboardPower,          /* USB 0x66, ADB 0x7f */
-	kHIDUsage_KeypadComma,            /* USB 0x85, ADB 0x5f */
-	kHIDUsage_KeyboardInternational1, /* USB 0x87, ADB 0x5e */
-	kHIDUsage_KeyboardInternational3, /* USB 0x89, ADB 0x5d */
-	kHIDUsage_KeyboardF18,            /* USB 0x6d, ADB 0x4f */
-	(u_char)NX_NOSPECIALKEY,
-	(u_char)NX_NOSPECIALKEY,
-	kHIDUsage_KeyboardF19,            /* USB 0x6e, ADB 0x50 */
-	kHIDUsage_KeyboardF20,            /* USB 0x6f, ADB 0x5a */
-	kHIDUsage_KeyboardLANG2,          /* USB 0x91, ADB 0x66 */
-	kHIDUsage_KeyboardMute,           /* USB 0x7f, ADB 0x4a */
-	kHIDUsage_KeyboardVolumeDown,     /* USB 0x81, ADB 0x49 */
-	kHIDUsage_KeyboardVolumeUp        /* USB 0x80, ADB 0x48 */
+	{kHIDUsage_KeyboardNonUSBackslash /* USB 0x64 */, 0x0a},
+	{kHIDUsage_KeyboardPower /* USB 0x66 */, 0x7f},
+	{kHIDUsage_KeyboardF18 /* USB 0x6d */, 0x4f},
+	{kHIDUsage_KeyboardF19 /* USB 0x6e */, 0x50},
+	{kHIDUsage_KeyboardF20 /* USB 0x6f */, 0x5a},
+	{kHIDUsage_KeypadComma /* USB 0x85 */, 0x5f},
+	{kHIDUsage_KeyboardVolumeUp /* USB 0x80 */, 0x48},
+	{kHIDUsage_KeyboardVolumeDown /* USB 0x81 */, 0x49},
+	{kHIDUsage_KeyboardInternational1 /* USB 0x87 */, 0x5e},
+	{kHIDUsage_KeyboardInternational3 /* USB 0x89 */, 0x5d},
+	{kHIDUsage_KeyboardLANG1 /* USB 0x90 */, 0x68},
+	{kHIDUsage_KeyboardLANG2 /* USB 0x91 */, 0x66},
+	{kHIDUsage_KeyboardMute /* USB 0x7f */, 0x4a}
+};
+static const u_char kNumVirtualFKeys = sizeof(kVirtualFKeys) / sizeof(*kVirtualFKeys);
+
+enum
+{
+	EX_KEYTYPE_EXPOSE = NX_NUMSPECIALKEYS,
+	EX_KEYTYPE_DASHBOARD
 };
 
-static const u_char kFKeyMappings[] =
+bool
+SmartfishEngageKeyboard::init(OSDictionary *properties)
 {
-	NX_KEYTYPE_BRIGHTNESS_DOWN,
-	NX_KEYTYPE_BRIGHTNESS_UP,
-	(u_char)NX_NOSPECIALKEY, /* Exposé */
-	(u_char)NX_NOSPECIALKEY, /* Dashboard */
-	(u_char)NX_NOSPECIALKEY,
-	(u_char)NX_NOSPECIALKEY,
-	NX_KEYTYPE_PREVIOUS,
-	NX_KEYTYPE_PLAY,
-	NX_KEYTYPE_NEXT,
-	NX_KEYTYPE_MUTE,
-	NX_KEYTYPE_SOUND_DOWN,
-	NX_KEYTYPE_SOUND_UP
-};
+	if (super::init(properties))
+	{
+		memset(_fKeyMappings, (u_char)NX_NOSPECIALKEY, sizeof(_fKeyMappings));
+		_fKeyMappings[kHIDUsage_KeyboardF1] = NX_KEYTYPE_BRIGHTNESS_DOWN;
+		_fKeyMappings[kHIDUsage_KeyboardF2] = NX_KEYTYPE_BRIGHTNESS_UP;
+		_fKeyMappings[kHIDUsage_KeyboardF3] = EX_KEYTYPE_EXPOSE;
+		_fKeyMappings[kHIDUsage_KeyboardF4] = EX_KEYTYPE_DASHBOARD;
+		_fKeyMappings[kHIDUsage_KeyboardF7] = NX_KEYTYPE_PREVIOUS;
+		_fKeyMappings[kHIDUsage_KeyboardF8] = NX_KEYTYPE_PLAY;
+		_fKeyMappings[kHIDUsage_KeyboardF9] = NX_KEYTYPE_NEXT;
+		_fKeyMappings[kHIDUsage_KeyboardF10] = NX_KEYTYPE_MUTE;
+		_fKeyMappings[kHIDUsage_KeyboardF11] = NX_KEYTYPE_SOUND_DOWN;
+		_fKeyMappings[kHIDUsage_KeyboardF12] = NX_KEYTYPE_SOUND_UP;
+#if 0
+		_fKeyMappings[kHIDUsage_KeyboardDeleteOrBackspace] = NX_KEYTYPE_EJECT;
+#endif // 0
+
+		return true;
+	}
+	else
+		return false;
+}
 
 IOReturn
 SmartfishEngageKeyboard::setSystemProperties(OSDictionary *properties)
@@ -74,6 +89,33 @@ SmartfishEngageKeyboard::setSystemProperties(OSDictionary *properties)
 	{
 		OSDictionary *propsCopy = OSDictionary::withDictionary(properties);
 		OSData *keyMapData = OSData::withBytes(kKeyMap, sizeof(kKeyMap));
+
+		keyMapData->appendByte('\0', 1);
+		u_char numFKeyMappings = 0;
+		bzero(_fKeyVirtualMappings, sizeof(_fKeyVirtualMappings));
+		for (u_short usage = 0; usage < NX_NUMKEYCODES; ++usage)
+			switch (_fKeyMappings[usage])
+			{
+				case (u_char)NX_NOSPECIALKEY: continue;
+
+				case NX_KEYTYPE_BRIGHTNESS_DOWN: _fKeyVirtualMappings[usage] = kHIDUsage_KeyboardF14; break;
+				case NX_KEYTYPE_BRIGHTNESS_UP: _fKeyVirtualMappings[usage] = kHIDUsage_KeyboardF15; break;
+				case EX_KEYTYPE_DASHBOARD: _fKeyVirtualMappings[usage] = kHIDUsage_KeyboardF16; break;
+				case EX_KEYTYPE_EXPOSE: _fKeyVirtualMappings[usage] = kHIDUsage_KeyboardF17; break;
+
+				default:
+					if (numFKeyMappings < kNumVirtualFKeys)
+					{
+						_fKeyVirtualMappings[usage] = kVirtualFKeys[numFKeyMappings].usb;
+						keyMapData->appendByte(_fKeyMappings[usage], 1);
+						keyMapData->appendByte(kVirtualFKeys[numFKeyMappings].adb, 1);
+						++numFKeyMappings;
+					}
+					break;
+			}
+		u_char *pCount = (u_char *)keyMapData->getBytesNoCopy(sizeof(kKeyMap), 1);
+		*pCount = numFKeyMappings;
+
 		propsCopy->setObject(kIOHIDKeyMappingKey, keyMapData);
 		keyMapData->release();
 #ifdef DEBUG
@@ -107,9 +149,8 @@ SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime timeStamp,
 
 		if (usage == kHIDUsage_KeyboardApplication)
 			_fKeyState = (value != 0);
-		else if (_fKeyState && kHIDUsage_KeyboardF1 <= usage <= kHIDUsage_KeyboardF12 &&
-				kFKeyMappings[usage - kHIDUsage_KeyboardF1] != (u_char)NX_NOSPECIALKEY)
-			usage = kVirtualFKeys[usage - kHIDUsage_KeyboardF1];
+		else if (_fKeyState && _fKeyMappings[usage] != (u_char)NX_NOSPECIALKEY)
+			usage = _fKeyVirtualMappings[usage];
 #ifdef DEBUG
 		else switch (usage)
 		{

@@ -149,7 +149,7 @@ static const u_char kKeyMap[] =
 	0x00, 0xfe, 0x2a,                                                                                     // 67 F11
 	0xff,                                                                                                 // 68
 	0x00, 0xfe, 0x91,                                                                                     // 69 F13
-	0x00, 0xfe, 0x82,                                                                                     // 6a
+	0x00, 0xfe, 0x82,                                                                                     // 6a F16
 	0x00, 0xfe, 0x90,                                                                                     // 6b F14
 	0xff,                                                                                                 // 6c
 	0x00, 0xfe, 0x29,                                                                                     // 6d F10
@@ -218,15 +218,4 @@ static const u_char kKeyMap[] =
 	0x02, 0xff, 0x04, 0x00, 0x70,
 	0x02, 0xff, 0x04, 0x00, 0x5d,
 	0x02, 0xff, 0x04, 0x00, 0x5b,
-
-	// Special Keys:
-	0x08,
-	NX_KEYTYPE_BRIGHTNESS_DOWN, 0x0a,
-	NX_KEYTYPE_BRIGHTNESS_UP, 0x7f,
-	NX_KEYTYPE_PREVIOUS, 0x50,
-	NX_KEYTYPE_PLAY, 0x5a,
-	NX_KEYTYPE_NEXT, 0x66,
-	NX_KEYTYPE_MUTE, 0x4a,
-	NX_KEYTYPE_SOUND_DOWN, 0x49,
-	NX_KEYTYPE_SOUND_UP, 0x48
 };
