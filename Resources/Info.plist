@@ -55,7 +55,7 @@
 	</dict>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>Smartfish Engage™ Keyboard</key>
+		<key>Smartfish Engage™ Keyboard (Rev1)</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
@@ -76,6 +76,30 @@
 			<string>Keyboard</string>
 			<key>ProductID</key>
 			<integer>60935</integer>
+			<key>VendorID</key>
+			<integer>7480</integer>
+		</dict>
+		<key>Smartfish Engage™ Keyboard (Rev2)</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.meowfishies.driver.${PRODUCT_NAME:rfc1034identifier}</string>
+			<key>DeviceUsagePairs</key>
+			<array>
+				<dict>
+					<key>DeviceUsage</key>
+					<integer>6</integer>
+					<key>DeviceUsagePage</key>
+					<integer>1</integer>
+				</dict>
+			</array>
+			<key>IOClass</key>
+			<string>SmartfishEngageKeyboard</string>
+			<key>IOProviderClass</key>
+			<string>IOHIDInterface</string>
+			<key>HIDDefaultBehavior</key>
+			<string>Keyboard</string>
+			<key>ProductID</key>
+			<integer>60936</integer>
 			<key>VendorID</key>
 			<integer>7480</integer>
 		</dict>
