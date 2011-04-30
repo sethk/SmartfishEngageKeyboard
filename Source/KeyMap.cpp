@@ -94,7 +94,7 @@ static const u_char kKeyMap[] =
 	0x02, 0x00, 0x09, 0x00, 0x19,                                                                         // 30 Tab
 	0x0c, 0x00, 0x20, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00,                                                 // 31 Space
 	0x0a, 0x00, 0x60, 0x00, 0x7e, 0x00, 0x60, 0x01, 0xbb,                                                 // 32 <
-	0x02, 0x00, 0x7f, 0x00, 0x08,                                                                         // 33 Backsp
+	0x02, 0x00, 0x7f, 0x00, 0x08,                                                                         // 33 Backspc
 	0xff,                                                                                                 // 34 Enter
 	0x02, 0x00, 0x1b, 0x00, 0x7e,                                                                         // 35 Escape
 	0xff,                                                                                                 // 36 RControl
