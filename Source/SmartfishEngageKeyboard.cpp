@@ -39,7 +39,7 @@ SmartfishEngageKeyboard::dispatchKeyboardEvent(AbsoluteTime timeStamp,
 
 	if (usagePage == kHIDPage_KeyboardOrKeypad)
 	{
-		if (usage < kHIDUsage_KeyboardLeftControl)
+		if (usage > 0 && usage < kHIDUsage_KeyboardLeftControl)
 			--usage;
 
 #ifdef DEBUG
