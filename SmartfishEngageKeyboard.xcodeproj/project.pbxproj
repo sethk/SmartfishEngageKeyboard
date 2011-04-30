@@ -34,6 +34,7 @@
 
 /* Begin PBXBuildFile section */
 		32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */; settings = {ATTRIBUTES = (); }; };
+		FDA1CD481348ECF800956063 /* DumpKeyMap.c in Sources */ = {isa = PBXBuildFile; fileRef = FDA1CD351348EC3800956063 /* DumpKeyMap.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +54,19 @@
 		8DA8362C06AD9B9200E5AC22 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
 		FD2F83AD131A199E00C58E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD9DA162133871380018AAE4 /* KeyMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyMap.cpp; sourceTree = "<group>"; tabWidth = 4; };
+		FDA1CD351348EC3800956063 /* DumpKeyMap.c */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.c; path = DumpKeyMap.c; sourceTree = "<group>"; tabWidth = 4; };
+		FDA1CD3B1348EC9100956063 /* DumpKeyMap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DumpKeyMap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		32D94FCB0562CBF700B6AF17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDA1CD391348EC9100956063 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */,
+				FDA1CD3B1348EC9100956063 /* DumpKeyMap */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +110,7 @@
 				1A224C3EFF42367911CA2CB7 /* SmartfishEngageKeyboard.h */,
 				1A224C3FFF42367911CA2CB7 /* SmartfishEngageKeyboard.cpp */,
 				FD9DA162133871380018AAE4 /* KeyMap.cpp */,
+				FDA1CD351348EC3800956063 /* DumpKeyMap.c */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -132,6 +144,22 @@
 			productReference = 32D94FD00562CBF700B6AF17 /* SmartfishEngageKeyboard.kext */;
 			productType = "com.apple.product-type.kernel-extension.iokit";
 		};
+		FDA1CD3A1348EC9100956063 /* DumpKeyMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDA1CD3F1348ECB700956063 /* Build configuration list for PBXNativeTarget "DumpKeyMap" */;
+			buildPhases = (
+				FDA1CD381348EC9100956063 /* Sources */,
+				FDA1CD391348EC9100956063 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DumpKeyMap;
+			productName = DumpKeyMap;
+			productReference = FDA1CD3B1348EC9100956063 /* DumpKeyMap */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -154,6 +182,7 @@
 				32D94FC30562CBF700B6AF17 /* SmartfishEngageKeyboard */,
 				FD7E9DEA13164DF800580A91 /* Load */,
 				FDDAAB111319F13900E2ACC4 /* Unload */,
+				FDA1CD3A1348EC9100956063 /* DumpKeyMap */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +232,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				32D94FCA0562CBF700B6AF17 /* SmartfishEngageKeyboard.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDA1CD381348EC9100956063 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDA1CD481348ECF800956063 /* DumpKeyMap.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +339,36 @@
 			};
 			name = Release;
 		};
+		FDA1CD3D1348EC9200956063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = DumpKeyMap;
+			};
+			name = Debug;
+		};
+		FDA1CD3E1348EC9200956063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = DumpKeyMap;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		FDDAAB121319F13900E2ACC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -349,6 +416,15 @@
 			buildConfigurations = (
 				FD7E9DEB13164DF800580A91 /* Debug */,
 				FD7E9DEC13164DF800580A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDA1CD3F1348ECB700956063 /* Build configuration list for PBXNativeTarget "DumpKeyMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDA1CD3D1348EC9200956063 /* Debug */,
+				FDA1CD3E1348EC9200956063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
